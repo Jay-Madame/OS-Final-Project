@@ -2,7 +2,11 @@
 #include <fstream>
 #include <string>
 
-void run(char type, int frame_count, int page_table[], int page_count);
+// Permits imported files to use main functions when ran as standalone
+#define RUNNING_MAIN
+#include "lru.cpp"
+
+int run(char type, int frame_count, int page_table[], int page_count);
 
 int main(int argc, char* argv[]) {
 	if (argc < 2) {
@@ -44,12 +48,10 @@ int main(int argc, char* argv[]) {
     	}
     	inputFile.close();
 	
-	run(algorithmType, numFrames, referenceString, refCount);
-
-	return 0;
+	return run(algorithmType, numFrames, referenceString, refCount);
 }
 
-void run(char type, int frame_count, int page_table[], int page_count) {
+int run(char type, int frame_count, int page_table[], int page_count) {
 
 	switch (type) {
         	case 'F':
@@ -58,6 +60,7 @@ void run(char type, int frame_count, int page_table[], int page_count) {
 
         	case 'L':
             		std::cout << "Running LRU Algorithm..." << std::endl;
+					runLRU(frame_count, page_table, page_count);
             	break;
 
         	case 'O':
@@ -66,6 +69,7 @@ void run(char type, int frame_count, int page_table[], int page_count) {
 
        		default:
             		std::cout << "Error: Unknown Algorithm Type '" << type << "'" << std::endl;
-            	break;
+            	return 1;
     }
+	return 0;
 }
