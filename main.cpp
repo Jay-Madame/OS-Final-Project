@@ -5,6 +5,7 @@
 // Permits imported files to use main functions when ran as standalone
 #define RUNNING_MAIN
 #include "lru.cpp"
+#include "OPT.cpp"
 
 int run(char type, int frame_count, int page_table[], int page_count);
 
@@ -65,6 +66,7 @@ int run(char type, int frame_count, int page_table[], int page_count) {
 
         	case 'O':
             		std::cout << "Running OPT Algorithm..." << std::endl;
+					runOPT(frame_count, page_table, page_count);
             	break;
 
        		default:
