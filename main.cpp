@@ -6,6 +6,7 @@
 #define RUNNING_MAIN
 #include "lru.cpp"
 #include "OPT.cpp"
+#include "FIFO.cpp"
 
 int run(char type, int frame_count, int page_table[], int page_count);
 
@@ -57,6 +58,7 @@ int run(char type, int frame_count, int page_table[], int page_count) {
 	switch (type) {
         	case 'F':
             		std::cout << "Running FIFO Algorithm..." << std::endl;
+			runFIFO(frame_count, page_table, page_count);
             	break;
 
         	case 'L':
